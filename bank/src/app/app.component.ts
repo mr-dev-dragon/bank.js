@@ -8,7 +8,6 @@ import { MainComponent } from './app/shared/components/main/main.component';
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet,
     TransactionListComponent,
     NavbarComponent,
     FooterComponent,
