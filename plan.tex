@@ -1,0 +1,119 @@
+// Angular 19 Bank Web App Structure
+
+// Perfect Navigation Bar (HTML example)
+const navBarHtml = `
+<nav>
+  <ul>
+    <li><a routerLink="/bank">Bank Dashboard</a></li>
+    <li><a routerLink="/accounts">My Accounts</a></li>
+    <li><a routerLink="/loans">Loans</a></li>
+    <li><a routerLink="/investments">Investments</a></li>
+    <li><a routerLink="/customer">Customer Portal</a></li>
+  </ul>
+</nav>
+`;
+
+// Main Routes in the app-routing.module.ts
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+    { path: '', redirectTo: '/bank', pathMatch: 'full' },
+    { path: 'bank', loadChildren: () => import('./features/bank/bank.module').then(m => m.BankModule) },
+    { path: 'accounts', loadChildren: () => import('./features/accounts/accounts.module').then(m => m.AccountsModule) },
+    { path: 'loans', loadChildren: () => import('./features/loans/loans.module').then(m => m.LoansModule) },
+    { path: 'investments', loadChildren: () => import('./features/investments/investments.module').then(m => m.InvestmentsModule) },
+    { path: 'customer', loadChildren: () => import('./features/customer/customer.module').then(m => m.CustomerModule) },
+    { path: '**', redirectTo: '/bank' } // Fallback route
+];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+// Folder structure with Shared Components
+
+src/
+├── app/
+│   ├── core/                            // Core module for foundational services, guards, and utilities
+│   │   ├── auth/                        // Authentication-related logic and components
+│   │   │   ├── login/                   // Login-related components
+│   │   │   ├── register/                // Registration-related components
+│   │   │   ├── forgot-password/         // Forgot password flow components
+│   │   │   ├── reset-password/          // Reset password flow components
+│   │   ├── shared/                      // Shared utilities, services, and components
+│   │   ├── routing/                     // Routing-related logic (guards, etc.)
+│   │   └── services/                    // Core services (API, configuration)
+│   ├── layout/                          // Layout-related components (navbar, sidebar, footer)
+│   │   ├── navbar/                      // Navbar component
+│   │   ├── sidebar/                     // Sidebar component
+│   │   ├── footer/                      // Footer component
+│   │   └── layout.module.ts             // Layout module that consolidates layout components
+│   ├── modules/                         // Business logic-specific modules
+│   │   ├── bank/                        // Bank-related module
+│   │   │   ├── components/              // Bank-specific components
+│   │   ├── accounts/                    // Account-related module
+│   │   │   ├── components/              // Account-specific components
+│   │   ├── loans/                       // Loans-related module
+│   │   │   ├── components/              // Loan-specific components
+│   │   ├── investments/                 // Investments-related module
+│   │   ├── customer/                    // Customer-related module
+│   │   │   ├── components/              // Customer-specific components
+│   │   └── ...                          // Additional business logic modules as needed
+│   ├── app.component.ts                 // Root component
+│   ├── app.component.html               // Root template for the entire app
+│   ├── app.component.css                // Root styling
+│   └── app.module.ts                    // Root module that binds everything together
+├── assets/                             // Static files like images, icons, etc.
+├── environments/                       // Environment configurations (e.g., development, production)
+├── styles/                             // Global styles (e.g., CSS resets, utility classes)
+├── index.html                          // Main HTML entry point for the app
+└── main.ts                             // Main entry point for the Angular application
+
+
+
+// Feature Module Example (e.g., Bank Module - bank.module.ts)
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+@NgModule({
+    declarations: [
+        DashboardComponent,
+    ],
+    imports: [
+        CommonModule,
+        RouterModule
+    ]
+})
+export class BankModule { }
+
+// Lazy-loaded Route Example (e.g., bank-routing.module.ts)
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+const routes: Routes = [
+    { path: '', component: DashboardComponent } // Default bank route
+];
+
+@NgModule({
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
+})
+export class BankRoutingModule { }
+
+// Shared Folder Example (navbar.component.ts)
+import { Component } from '@angular/core';
+
+@Component({
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css']
+})
+export class NavbarComponent { }
+
+// This structure ensures modularity and reusability for a scalable Angular app.
