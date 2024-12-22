@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AccountRoutingModule } from './account-routing.module';
-import { AccountListComponent } from './components/account-list/account-list.component';
-import { AccountDetailComponent } from './components/account-detail/account-detail.component';
+import { AccountListComponent } from '../bank/src/app/app/account/components/account-list/account-list.component';
+import { AccountDetailComponent } from '../bank/src/app/app/account/components/account-detail/account-detail.component';
 
 
 @NgModule({
@@ -17,3 +17,6 @@ import { AccountDetailComponent } from './components/account-detail/account-deta
   ]
 })
 export class AccountModule { }
+
+
+

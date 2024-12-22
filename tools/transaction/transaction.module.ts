@@ -3,12 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { TransactionRoutingModule } from './transaction-routing.module';
 
-
 @NgModule({
-  declarations: [],
+  declarations: [
+
+  ],
+
   imports: [
     CommonModule,
-    TransactionRoutingModule
+    TransactionRoutingModule,
+
   ]
 })
 export class TransactionModule { }
+

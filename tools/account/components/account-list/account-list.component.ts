@@ -1,8 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-account-list',
-  imports: [],
+  standalone: true, // Mark as standalone
+  imports: [CommonModule],
   templateUrl: './account-list.component.html',
   styleUrl: './account-list.component.scss'
 })
