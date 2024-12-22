@@ -43,25 +43,183 @@ src/
 │   │   │   ├── register/                // Registration-related components
 │   │   │   ├── forgot-password/         // Forgot password flow components
 │   │   │   ├── reset-password/          // Reset password flow components
-│   │   ├── shared/                      // Shared utilities, services, and components
-│   │   ├── routing/                     // Routing-related logic (guards, etc.)
-│   │   └── services/                    // Core services (API, configuration)
+│   │   |                    
+        └── shared/
+            ├── services/                 // Shared services for common logic across the app
+            │   ├── api.service.ts        // A service to handle HTTP requests to an API
+            │   ├── notification.service.ts // Global notification service (e.g., toasts, alerts)
+            │   ├── logging.service.ts    // Logging service to log errors, info, or debug messages
+            │   ├── config.service.ts     // Service for managing global configuration values
+            │   ├── auth.service.ts       // Shared authentication service for login/logout logic
+            │   └── ...                   // Other shared services like error handling, user profile, etc.
+            ├── pipes/                    // Shared pipes for transforming data in templates
+            │   ├── currency.pipe.ts      // Pipe to format numbers as currency
+            │   ├── date.pipe.ts          // Pipe to format dates into a specific format
+            │   ├── filter.pipe.ts        // Pipe to filter lists of data (e.g., search functionality)
+            │   ├── truncate.pipe.ts      // Pipe to truncate long strings with ellipsis
+            │   └── ...                   // Other utility pipes like uppercase, lowercase, etc.
+            ├── directives/               // Shared directives to add reusable functionality to elements
+            │   ├── tooltip.directive.ts  // Directive to show a tooltip on hover or click
+            │   ├── autofocus.directive.ts // Directive to auto-focus an element on load
+            │   ├── dropdown.directive.ts // Directive for a dropdown behavior
+            │   ├── click-outside.directive.ts // Directive to close dropdowns or modals on click outside
+            │   └── ...                   // Other directives like validation, animations, etc.
+            └── components/                // Reusable UI components that are not domain-specific
+                ├── spinner/               // Spinner component (e.g., loading indicator)
+                │   ├── spinner.component.ts  // Logic for spinner component
+                │   ├── spinner.component.html // Spinner template
+                │   └── spinner.component.css  // Styling for the spinner
+                ├── modal/                 // Modal component (e.g., dialog boxes)
+                │   ├── modal.component.ts    // Logic for modal component
+                │   ├── modal.component.html  // Modal template
+                │   └── modal.component.css   // Modal styling
+                ├── button/                // Button component (e.g., styled buttons for the app)
+                │   ├── button.component.ts   // Logic for button component
+                │   ├── button.component.html // Button template
+                │   └── button.component.css  // Button styling
+                ├── card/                  // Card component (e.g., for displaying content in a box)
+                │   ├── card.component.ts     // Logic for card component
+                │   ├── card.component.html   // Card template
+        |       │   └── card.component.css    // Card styling
+        |       └── ...                    // Other shared components like table, breadcrumb, etc.
+        |
+        |
+        └── routing/
+            ├── app-routing.module.ts       // Main routing module for the application
+            ├── auth.guard.ts               // Guard to protect routes requiring authentication
+            ├── role.guard.ts               // Guard to restrict routes based on user roles
+            ├── error.interceptor.ts        // Interceptor for handling routing errors (e.g., 404, 500)
+            ├── loader.interceptor.ts       // Interceptor for managing loading states during routing
+        |   ├── redirect.guard.ts           // Guard to handle route redirections (e.g., redirect unauthorized users)
+        |   └── ...
+        |
+        └── services/
+            ├── api.service.ts                // API service for handling HTTP requests
+            ├── auth.service.ts               // Service for handling authentication logic
+            ├── config.service.ts            // Configuration service for managing app-wide settings
+            ├── logger.service.ts            // Service for logging events and errors
+            ├── notification.service.ts      // Service for global notifications (e.g., toasts, alerts)
+            ├── loader.service.ts            // Service for managing global loading state
+            ├── user.service.ts              // Service for user-related operations (profile, settings, etc.)
+            ├── theme.service.ts             // Service for managing app themes (dark mode, light mode)
+            ├── analytics.service.ts         // Service for interacting with analytics (Google Analytics, etc.)
+            └── ...
+
 │   ├── layout/                          // Layout-related components (navbar, sidebar, footer)
 │   │   ├── navbar/                      // Navbar component
-│   │   ├── sidebar/                     // Sidebar component
 │   │   ├── footer/                      // Footer component
 │   │   └── layout.module.ts             // Layout module that consolidates layout components
 │   ├── modules/                         // Business logic-specific modules
-│   │   ├── bank/                        // Bank-related module
-│   │   │   ├── components/              // Bank-specific components
-│   │   ├── accounts/                    // Account-related module
-│   │   │   ├── components/              // Account-specific components
-│   │   ├── loans/                       // Loans-related module
-│   │   │   ├── components/              // Loan-specific components
-│   │   ├── investments/                 // Investments-related module
-│   │   ├── customer/                    // Customer-related module
-│   │   │   ├── components/              // Customer-specific components
-│   │   └── ...                          // Additional business logic modules as needed
+        ├── bank/                              // Bank module, contains all banking-related logic
+            │   ├── components/                    // Bank-specific components (UI elements and business logic)
+            │   │   ├── account-overview/          // Account overview component
+            │   │   ├── transaction-history/       // Transaction history component
+            │   │   ├── loan-application/          // Loan application component
+            │   │   ├── bank-details/              // Bank details component
+            │   │   ├── account-settings/          // Account settings component
+            │   │   ├── customer-support/          // Customer support component
+            │   ├── services/                      // Bank-specific services (API calls, state management)
+            │   │   ├── bank-api.service.ts        // Service for API calls related to banking operations
+            │   │   ├── account.service.ts         // Service for handling bank accounts
+            │   │   ├── loan.service.ts            // Service for loan-related operations
+            │   │   ├── transaction.service.ts     // Service for managing transactions
+            │   │   ├── customer.service.ts        // Service for managing customers and support
+            │   ├── models/                        // Bank-related models for defining data structures
+            │   │   ├── account.model.ts           // Model for defining the bank account data structure
+            │   │   ├── transaction.model.ts       // Model for defining the transaction data structure
+            │   │   ├── loan.model.ts              // Model for defining loan data structure
+            │   ├── bank-routing.module.ts         // Routing module for the bank feature
+            │   ├── bank.module.ts                 // Bank module (for setting up module-specific imports, declarations)
+
+
+        └── accounts/                            // Account-related module
+            ├── components/                      // Account-specific components (UI elements for account management)
+            │   ├── account-overview/            // Overview of account details (balance, recent activity)
+            │   ├── account-settings/            // Manage account settings (personal details, preferences)
+            │   ├── account-security/            // Manage security settings (password change, two-factor authentication)
+            │   ├── account-transactions/        // View and manage account transactions (history, deposits, withdrawals)
+            │   ├── add-account/                 // Add new account functionality (if applicable)
+            │   ├── account-verify/              // Verify account (e.g., email verification, phone number verification)
+            ├── services/                        // Account-specific services (business logic and API calls)
+            │   ├── account-api.service.ts       // Handles API requests for account-related actions (fetching account details, updating settings)
+            │   ├── account-settings.service.ts  // Handles updating account settings, preferences, etc.
+            │   ├── account-security.service.ts  // Manages security features like password reset, two-factor authentication
+            │   ├── account-transactions.service.ts // Manages transaction history and actions (withdrawals, deposits)
+            ├── models/                          // Account-related models (define data structures)
+            │   ├── account.model.ts             // Model for account data (account number, balance, account type, etc.)
+            │   ├── transaction.model.ts         // Model for transactions (transaction ID, amount, type)
+            ├── accounts-routing.module.ts       // Routing for account-related components and views
+            ├── accounts.module.ts               // The main module file for the accounts feature
+
+        └── loans/                              // Loans-related module
+            ├── components/                      // Loan-specific components (UI elements for loan management)
+            │   ├── loan-overview/               // Overview of loan details (amount, duration, status)
+            │   ├── loan-application/            // Apply for a loan component (form for loan application)
+            │   ├── loan-status/                 // View loan status (approved, pending, rejected)
+            │   ├── loan-payment/                // Loan payment component (make payments towards loan)
+            │   ├── loan-repayment-schedule/     // Repayment schedule details (installments, due dates)
+            │   ├── loan-approval/               // Loan approval management (approve/reject loan applications)
+            │   ├── loan-terms/                  // Display or modify loan terms (interest rates, repayment plans)
+            ├── services/                        // Loan-specific services (business logic and API calls)
+            │   ├── loan-api.service.ts          // API service for loan-related actions (apply, approve, view loan status)
+            │   ├── loan-payment.service.ts      // Manages loan payments and balance updates
+            │   ├── loan-repayment.service.ts    // Manages loan repayment schedules and installments
+            │   ├── loan-approval.service.ts     // Handles loan approval/rejection processes
+            │   ├── loan-terms.service.ts        // Manages loan terms and conditions updates
+            ├── models/                          // Loan-related models (define data structures)
+            │   ├── loan.model.ts                // Model for loan data (loan amount, interest rate, repayment schedule)
+            │   ├── loan-payment.model.ts        // Model for loan payment data (amount paid, date, remaining balance)
+            │   ├── loan-approval.model.ts       // Model for loan approval data (status, approver)
+            ├── loans-routing.module.ts          // Routing for loan-related components and views
+            ├── loans.module.ts                  // The main module file for the loans feature
+
+
+        └── investments/                            // Investments-related module
+            ├── components/                         // Investment-specific components (UI elements for investment management)
+            │   ├── investment-opportunities/       // Displays available investment opportunities (e.g., stocks, bonds)
+            │   ├── investment-portfolio/           // Displays user's investment portfolio (overview of investments)
+            │   ├── investment-details/             // Displays details of a specific investment (returns, risks, etc.)
+            │   ├── investment-plan/                // Component for setting up new investment plans or strategies
+            │   ├── investment-returns/             // Displays returns on investment (ROI, performance metrics)
+            │   ├── investment-transaction/         // Component to record or manage transactions related to investments (buy/sell)
+            ├── services/                           // Investment-specific services (business logic and API calls)
+            │   ├── investment-api.service.ts       // API service for managing investment data (create, update, view investments)
+            │   ├── investment-portfolio.service.ts // Manages the user’s investment portfolio (add/remove investments)
+            │   ├── investment-plan.service.ts      // Handles the creation and management of investment plans
+            │   ├── investment-return.service.ts    // Calculates and tracks returns on investments
+            │   ├── investment-transaction.service.ts// Handles investment transactions (buy/sell)
+            ├── models/                             // Investment-related models (define data structures)
+            │   ├── investment.model.ts             // Model for investment data (amount, type, risk, return)
+            │   ├── investment-portfolio.model.ts   // Model for investment portfolio (list of investments, user-specific data)
+            │   ├── investment-plan.model.ts        // Model for investment plans (plan type, duration, etc.)
+            │   ├── investment-transaction.model.ts // Model for transaction data (type, amount, date)
+            ├── investments-routing.module.ts       // Routing for investment-related components and views
+            ├── investments.module.ts               // The main module file for the investments feature
+
+        └── customer/                            // Customer-related module
+            ├── components/                       // Customer-specific components (UI elements for managing customer data)
+            │   ├── customer-profile/             // Displays the customer profile (personal details, contact info, etc.)
+            │   ├── customer-activity/            // Displays customer activity (orders, transactions, history)
+            │   ├── customer-settings/            // Allows customers to manage their settings (preferences, notifications)
+            │   ├── customer-address/             // Allows customers to manage their address details (shipping, billing, etc.)
+            │   ├── customer-notifications/       // Displays customer notifications (alerts, messages)
+            ├── services/                          // Customer-specific services (business logic and API calls)
+            │   ├── customer-api.service.ts       // Service for handling API interactions related to customer data (fetch, update)
+            │   ├── customer-profile.service.ts   // Service for managing customer profile data (personal info, profile updates)
+            │   ├── customer-activity.service.ts  // Service for tracking customer activity (orders, history)
+            │   ├── customer-settings.service.ts  // Service for managing customer settings (preferences, notification settings)
+            │   ├── customer-address.service.ts   // Service for managing customer address (shipping, billing)
+            │   ├── customer-notifications.service.ts // Service for managing customer notifications (alerts, messages)
+            ├── models/                            // Customer-related models (define data structures)
+            │   ├── customer.model.ts             // Model for customer data (personal info, contact, etc.)
+            │   ├── customer-profile.model.ts     // Model for customer profile (details like name, contact, etc.)
+            │   ├── customer-activity.model.ts    // Model for customer activity (orders, actions, history)
+            │   ├── customer-settings.model.ts    // Model for customer settings (preferences, notification settings)
+            │   ├── customer-address.model.ts     // Model for customer address (shipping and billing details)
+            │   ├── customer-notifications.model.ts // Model for customer notifications (alerts, messages)
+            ├── customer-routing.module.ts        // Routing for customer-related components and views
+            ├── customer.module.ts                // The main module file for the customer feature
+
 │   ├── app.component.ts                 // Root component
 │   ├── app.component.html               // Root template for the entire app
 │   ├── app.component.css                // Root styling
