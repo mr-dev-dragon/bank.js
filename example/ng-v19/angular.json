@@ -3,47 +3,21 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "bank": {
+    "ng-v19": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "standalone": true,
-          "prefix": "",
-          "style": "scss",
-          "skipTests": true,
-          "skipSelector": false
-        },
-        "@schematics/angular:class": {
-          "skipTests": true
-        },
-        "@schematics/angular:directive": {
-          "skipTests": true,
-          "standalone": true
-        },
-        "@schematics/angular:guard": {
-          "skipTests": true
-        },
-        "@schematics/angular:interceptor": {
-          "skipTests": true
-        },
-        "@schematics/angular:pipe": {
-          "skipTests": true
-        },
-        "@schematics/angular:resolver": {
-          "skipTests": true
-        },
-        "@schematics/angular:service": {
-          "skipTests": true
+          "style": "scss"
         }
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "",
+      "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@fangular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/bank",
+            "outputPath": "dist/ng-v19",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -90,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "bank:build:production"
+              "buildTarget": "ng-v19:build:production"
             },
             "development": {
-              "buildTarget": "bank:build:development"
+              "buildTarget": "ng-v19:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -124,8 +98,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }
