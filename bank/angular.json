@@ -7,9 +7,12 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
+          "standalone": true,
+          "prefix": "",
+          "selector": "",
           "style": "scss",
           "skipTests": true,
-          "standalone": true
+          "skipSelector": false
         },
         "@schematics/angular:class": {
           "skipTests": true
